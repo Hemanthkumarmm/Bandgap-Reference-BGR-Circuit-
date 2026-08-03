@@ -26,7 +26,7 @@ During the design and simulation of a standard BGR circuit, three major practica
 A forward-biased $PN$ junction (diode-connected BJT) exhibits a negative temperature coefficient. The voltage across the diode is given by $V_D = V_T \ln(I_0 / I_S)$. The exponential temperature dependency of the saturation current $I_S$ dominates, yielding a negative slope ($\approx -1.6\text{ mV/}^\circ\text{C}$ to $-1.88\text{ mV/K}$).
 
 #### CTAT Circuit Schematic
-![CTAT Circuit Schematic](images/ctat_schematic.png)
+![CTAT Circuit Schematic](CTAT_ckt.png)
 
 #### CTAT Simulation Waveform
 ![CTAT Simulation Waveform](images/ctat_waveform.png)
