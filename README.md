@@ -29,7 +29,7 @@ A forward-biased $PN$ junction (diode-connected BJT) exhibits a negative tempera
 ![CTAT Circuit Schematic](CTAT_ckt.png)
 
 #### CTAT Simulation Waveform
-![CTAT Simulation Waveform](images/ctat_waveform.png)
+![CTAT Simulation Waveform](CTAT_wave.png)
 
 ---
 
@@ -37,10 +37,10 @@ A forward-biased $PN$ junction (diode-connected BJT) exhibits a negative tempera
 By operating two diodes at different current densities (using a scaling area factor $N = 2$), the difference between their base-emitter voltages ($\Delta V_{BE}$) is extracted across resistor $R_1$. This produces a voltage directly proportional to absolute temperature with a positive slope ($\approx +86.25\ \mu\text{V/K}$).
 
 #### PTAT Circuit Schematic
-![PTAT Circuit Schematic](images/ptat_schematic.png)
+![PTAT Circuit Schematic](PTAT.png)
 
 #### PTAT Simulation Waveform
-![PTAT Simulation Waveform](images/ptat_waveform.png)
+![PTAT Simulation Waveform](PTAT_wave.png)
 
 ---
 
@@ -48,7 +48,7 @@ By operating two diodes at different current densities (using a scaling area fac
 The BGR architecture references a self-biased current mirror loop to cross-inject the PTAT and CTAT voltage components into a single output node. 
 
 #### Complete BGR Circuit Schematic
-![Complete BGR Circuit Schematic](images/bgr_schematic.png)
+![Complete BGR Circuit Schematic](BGR.png)
 
 ---
 
@@ -83,25 +83,26 @@ $$\alpha_1 (86.25\ \mu\text{V/K}) - 1.6\text{ mV/}^\circ\text{C} = 0 \implies \a
 To observe the effect of the temperature compensation tuning parameter ($\alpha_1$), the value of resistor $R_2$ was simulated across four distinct operating zones:
 
 #### 1. R2 = 3.6 kΩ (Extremely Under-compensated)
-![Simulation Waveform: R2 at 3.6k](images/r2_3.6k_waveform.png)
+![Simulation Waveform: R2 at 3.6k](R2_3.3K.png)
 * **Behavior:** The PTAT branch gain is too low to counter the diode's temperature dependence.
 * **Result:** The output tracks a native CTAT profile, falling sharply as temperature increases.
 
 #### 2. R2 = 50 kΩ (Partially Under-compensated)
-![Simulation Waveform: R2 at 50k](images/r2_50k_waveform.png)
+![Simulation Waveform: R2 at 50k](R2_60K.png)
 * **Behavior:** The PTAT voltage contribution is increased but remains insufficient.
 * **Result:** The temperature coefficient improves slightly but stays negative, causing $V_{\text{ref}}$ to drop steadily across the sweep.
 
 #### 3. R2 = 97.5 kΩ (Optimized Target / Theoretical Match)
-![Simulation Waveform: R2 at 97.5k](images/r2_97.5k_waveform.png)
+![Simulation Waveform: R2 at 97.5k](R2_97.5K.png)
 * **Behavior:** Ideal balancing point matching the theoretical design requirements ($\alpha_1 \approx 18.82$).
 * **Result:** The PTAT and CTAT derivatives cancel perfectly ($\frac{dV_{\text{ref}}}{dT} = 0$), maintaining a stable output between $1.18\text{V}$ and $1.22\text{V}$.
 
 #### 4. R2 = 120 kΩ (Highly Over-compensated)
-![Simulation Waveform: R2 at 120k](images/r2_120k_waveform.png)
+![Simulation Waveform: R2 at 120k](R2_120K.png)
 * **Behavior:** The PTAT branch gain dominates the core loop composition completely.
 * **Result:** The reference voltage scales aggressively upward with temperature, yielding an uncompensated positive temperature coefficient.
 
+![Simulation Waveform: Supply Variation](supply_variation.png)
 
 ---
 
@@ -110,10 +111,10 @@ To observe the effect of the temperature compensation tuning parameter ($\alpha_
 To eliminate the degenerate zero-current state inherent to self-biased reference loops, an active start-up network is integrated into the core architecture. This block monitors the internal bias voltages and injects initialization current during power-on sequences.
 
 #### A. Start-Up Circuit Schematic
-![Start-Up Circuit Schematic Diagram](images/startup_circuit_schematic.png)
+![Start-Up Circuit Schematic Diagram](BGR_startup_ckt.png)
 
 #### B. Start-Up Transient Verification Waveform
-![Simulation Waveform: Power-On Transient Response](images/startup_transient_response.png)
+![Simulation Waveform: Power-On Transient Response](transient.png)
 
 Because the BGR relies on its own generated current to bias its transistors, if the circuit boots up with zero current flowing through the PMOS and NMOS branches, the gate voltages will sit at the supply rails ($V_{DD}$ or $GND$). At these points, both mirrors remain completely turned OFF. The circuit will latch into this state permanently unless forced out.
 
