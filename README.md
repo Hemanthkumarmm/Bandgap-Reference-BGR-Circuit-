@@ -61,7 +61,10 @@ $$V_{\text{ref}} = \alpha_1 V_{\text{PTAT}} + \alpha_2 V_{\text{CTAT}}$$
 
 * **Temperature Range:** $-40^\circ\text{C}$ to $+125^\circ\text{C}$
 * **Core Loop Parameters:** Target Current $I_0 = 5\ \mu\text{A}$, Diode Scaling Factor $N = 2$.
-* **Theoretical Slopes:** $\text{Slope}_{\text{PTAT}} = +86.25\ \mu\text{V/K}$, $\text{Slope}_{\text{CTAT}} = -1.6\text{ mV/}^\circ\text{C}$
+* **Theoretical Slopes:**
+  * $\text{Slope}_{\text{PTAT}} = +86.25\ \mu\text{V/K}$
+  * $\text{Slope}_{\text{CTAT}} = -1.6\text{ mV/}^\circ\text{C}$
+
 
 Assuming $\alpha_2 = 1$ to normalize the calculation:
 $$\alpha_1 (86.25\ \mu\text{V/K}) - 1.6\text{ mV/}^\circ\text{C} = 0 \implies \alpha_1 \approx 18.82$$
